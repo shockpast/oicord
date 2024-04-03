@@ -1,0 +1,13 @@
+[package]
+name = "oicord"
+version = "0.1.0"
+edition = "2021"
+
+[dependencies]
+serenity = { version = "0.12.1", default-features = false, features = ["client", "gateway", "rustls_backend", "model"] }
+tokio = { version = "1.37.0", features = ["macros", "rt-multi-thread"] }
+poise = { version = "0.6.1" }
+dotenvy = { version = "0.15.7" }
+a2s = { version = "0.5.2" }
+tabled = { version = "0.15.0" }
+time = { version = "0.3.34", features = ["formatting", "parsing"] }
