@@ -1,4 +1,4 @@
-use std::{env, collections::HashMap};
+use std::{collections::HashMap, env};
 
 use a2s::A2SClient;
 use dotenvy::dotenv;
@@ -38,8 +38,10 @@ impl PlayerField {
 async fn server(
     ctx: PContext<'_>,
     #[description = "Server's Code Name to retrieve information about."]
-    #[choices("S.O.S", "S.O.S II", "A.C.E", "A.C.E II", "F.B.I", "I.C.E", "F.U.N", "F.U.N II")]
-    choice: &'static str
+    #[choices(
+        "S.O.S", "S.O.S II", "A.C.E", "A.C.E II", "F.B.I", "I.C.E", "F.U.N", "F.U.N II"
+    )]
+    choice: &'static str,
 ) -> Result<(), PError> {
     let client = A2SClient::new().unwrap();
 
@@ -65,12 +67,6 @@ async fn server(
         let seconds = (player.duration % 60.0).floor();
         let minutes = ((player.duration / 60.0) % 60.0).floor();
         let hours = ((player.duration / 60.0) / 60.0).floor();
-
-        if player.name == " " {
-            println!("player.name is empty (loading state?)");
-        }
-
-        println!("{:?} {:?}", player.name, player.name.len());
 
         data.push(PlayerField::new(
             player.name,
